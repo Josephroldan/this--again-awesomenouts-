@@ -13,9 +13,11 @@ game.PlayerEntity = me.Entity.extend({
                 }
             }]);
         this.body.setVelocity(5, 20);
+        me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+
         this.renderable.addAnimation("idle", [78]);
         this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
-
+        this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
 
         this.renderable.setCurrentAnimation("idle");
 
@@ -30,14 +32,33 @@ game.PlayerEntity = me.Entity.extend({
         } else {
             this.body.vel.x = 0;
         }
-        if (this.body.vel.x !== 0) {
-            if (!this.renderable.isCurrentAnimation("walk")) {
-                this.renderable.setCurrentAnimation("walk");
-            }
 
-        } else {
-            this.renderable.setCurrentAnimation("idle");
+        
+            if (this.body.vel.x !== 0) {
+                if (!this.renderable.isCurrentAnimation("walk")) {
+                    
+                    this.renderable.setCurrentAnimation("walk");
+                }
+
+            } else {
+                this.renderable.setCurrentAnimation("idle");
+            }
+            
+            if (me.input.isKeyPressed("attack")){
+                console.log("attack1");
+            if(this.renderable.isCurrentAnimation("attack")){
+                
+                console.log("attack2");
+                //sets animation to attack and idle after
+                this.renderable.setCurrentAnimation("attack", "idle");
+                //resets animation process
+                this.renderable.setAnimationFrame();
+            }
+            
+            
         }
+            
+            
 
         this.body.update(delta);
 
@@ -57,7 +78,7 @@ game.PlayerBaseEntity = me.Entity.extend({
                 spriteheight: "100",
                 getShape: function() {
                     return(new me.Rect(0, 0, 100, 100)).toPolygon();
-                    
+
                     this.broken = false;
                     this.health = 10;
                     this.alwaysUpdate = true;
@@ -105,11 +126,15 @@ game.EnemyBaseEntity = me.Entity.extend({
                     this.type = "EnemyBaseEntity";
                 }
             }]);
+        this.renderable.addAnimation("idle", [0]);
+        this.renderable.addAnimation("broken", [1]);
+        this.renderable.setCurrentAnimation("idle");
 
     },
     update: function(delta) {
         if (this.health <= 0) {
             this.broken = true;
+            this.renderable.setCurrentAnimation("broken");
         }
         this.body.update(delta);
 

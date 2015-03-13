@@ -14,6 +14,11 @@ game.PlayScreen = me.ScreenObject.extend({
         
         
         me.input.bindKey(me.input.KEY.RIGHT, "right");
+       
+       me.input.bindKey(me.input.KEY.LEFT, "left");
+        // binds left arrow key for left direction
+        me.input.bindKey(me.input.KEY.SPACE, "jump");
+        
         me.input.bindKey(me.input.KEY.A, "attack");
         
         

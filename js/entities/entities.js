@@ -29,36 +29,48 @@ game.PlayerEntity = me.Entity.extend({
             //me.timer.tick smooths movement
             this.body.vel.x += this.body.accel.x * me.timer.tick;
             this.flipX(true);
-        } else {
+        } 
+        else if (me.input.isKeyPressed("left")) {
+            //tells character to move left
+            this.flipX(false);
+            // flips animations for moving right
+            this.body.vel.x -= this.body.accel.x * me.timer.tick;
+            // sets velocity and speed for moving left
+        }
+        
+        
+        
+        else {
             this.body.vel.x = 0;
         }
 
-        
-            if (this.body.vel.x !== 0) {
-                if (!this.renderable.isCurrentAnimation("walk")) {
-                    
-                    this.renderable.setCurrentAnimation("walk");
-                }
 
-            } else {
-                this.renderable.setCurrentAnimation("idle");
-            }
-            
-            if (me.input.isKeyPressed("attack")){
-                console.log("attack1");
-            if(this.renderable.isCurrentAnimation("attack")){
-                
+        if (me.input.isKeyPressed("attack")) {
+            console.log("attack1");
+            if (!this.renderable.isCurrentAnimation("attack")) {
+
                 console.log("attack2");
                 //sets animation to attack and idle after
                 this.renderable.setCurrentAnimation("attack", "idle");
                 //resets animation process
                 this.renderable.setAnimationFrame();
             }
-            
-            
+
+
         }
-            
-            
+        else if (this.body.vel.x !== 0) {
+            if (!this.renderable.isCurrentAnimation("walk")) {
+
+                this.renderable.setCurrentAnimation("walk");
+            }
+
+        } else {
+            this.renderable.setCurrentAnimation("idle");
+        }
+
+
+
+
 
         this.body.update(delta);
 
@@ -77,7 +89,7 @@ game.PlayerBaseEntity = me.Entity.extend({
                 spritewidth: "100",
                 spriteheight: "100",
                 getShape: function() {
-                    return(new me.Rect(0, 0, 100, 100)).toPolygon();
+                    return(new me.Rect(0, 0, 100, 70)).toPolygon();
 
                     this.broken = false;
                     this.health = 10;
@@ -117,7 +129,7 @@ game.EnemyBaseEntity = me.Entity.extend({
                 spritewidth: "100",
                 spriteheight: "100",
                 getShape: function() {
-                    return(new me.Rect(0, 0, 100, 100)).toPolygon();
+                    return(new me.Rect(0, 0, 100, 70)).toPolygon();
                     this.broken = false;
                     this.health = 10;
                     this.alwaysUpdate = true;

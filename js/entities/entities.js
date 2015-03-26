@@ -199,10 +199,57 @@ game.EnemyCreep = me.Entity.extend({
             image:"creep1",
             width:32,
             height:64,
+             spritewidth: "32",
+                spriteheight: "64",
+                getShape: function() {
+                    return(new me.Rect(0, 0, 32, 64)).toPolygon();
+                }
+           
         }]);
+    this.health = 5;
+    this.alwaysUpdate = true;
+    
+    this.body.setVelocity(3, 20);
+    this.type = "EnemyCreep";
+    
+    
+    this.renderable.addAnimation("walk", [3, 4, 5], 80);
+    this.renderable.setCurrentAnimation("walk");
+    
     },
-    update: function(){
+    update: function(delta){
         
+  this.body.update(delta);
+        this._super(me.Entity, "update", [delta]);       
+        
+        
+        
+        return true;
     }
     
+});
+
+
+game.GameManager = Object.extend({
+     init: function(x, y, settings){
+         this.now = new Date().getTime();
+         this.lastCreep = new Date().getTime();
+         
+         
+         this.alwaysUpdate = true;
+         
+     },
+     update: function(){
+          this.now = new Date().getTime();
+          
+          if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
+               this.lastCreep = this.now;
+               var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+               me.game.world.addChild(creepe, 5);
+               
+               
+               
+          }
+          return true;
+     } 
 });

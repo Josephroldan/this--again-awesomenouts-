@@ -124,13 +124,13 @@ game.PlayerBaseEntity = me.Entity.extend({
                 spriteheight: "100",
                 getShape: function() {
                     return(new me.Rect(0, 0, 100, 70)).toPolygon();
-                    this.broken = false;
-                    this.health = 10;
-                    this.alwaysUpdate = true;
-                    this.body.onCollision = this.onCollision.bind(this);
 
                 }
             }]);
+        this.broken = false;
+        this.health = 10;
+        this.alwaysUpdate = true;
+        this.body.onCollision = this.onCollision.bind(this);
 
         this.type = "PlayerBaseEntity";
         this.renderable.addAnimation("idle", [0]);
@@ -145,7 +145,14 @@ game.PlayerBaseEntity = me.Entity.extend({
         this.body.update(delta);
         this._super(me.Entity, "update", [delta]);
         return true;
+    
+    
     },
+    loseHealth: function(damage){
+        this.health = this.health - damage;
+    },
+    
+    
     onCollision: function() {
 
     }
@@ -212,9 +219,12 @@ game.EnemyCreep = me.Entity.extend({
 
             }]);
         this.health = 5;
+        this.attacking = false;
+        //identifies enemy movement is attacking
         this.alwaysUpdate = true;
         this.now = new date().getTime();
-
+        this.lastAttacking = new date().getTime();
+        this.lastHit = new date().getTime();
         this.body.setVelocity(3, 20);
         this.type = "EnemyCreep";
 
@@ -224,12 +234,12 @@ game.EnemyCreep = me.Entity.extend({
 
     },
     update: function(delta) {
-
+        this.now = new Date().getTime();
 
         this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
 
-        me.collision.check(this, true, this.collideHandler.bind(this), true)
+        me.collision.check(this, true, this.collideHandler.bind(this), true);
 
         this.body.update(delta);
 
@@ -240,10 +250,20 @@ game.EnemyCreep = me.Entity.extend({
 
         return true;
     },
-    
-    
-    collideHandler: function(response){
-        
+    collideHandler: function(response) {
+        if (response.b.type === 'PlayerBaseEntity') {
+            this.attacking = true;
+            this.lastAttacking = this.now;
+            this.body.vel.x = 0;
+            this.pos.x = this.pos.x + 1;
+            if ((this.now - this.lastHit >= 1000)) {
+                this.lastHit = this.now;
+                response.b.loseHealth(1);
+            }
+
+
+        }
+
     }
 
 });

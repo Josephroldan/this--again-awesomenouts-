@@ -15,6 +15,7 @@ game.resources = [
     
     
     
+    
     /* Atlases 
      * @example
      * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},

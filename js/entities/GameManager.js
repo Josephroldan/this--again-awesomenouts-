@@ -9,13 +9,7 @@ this.paused=false;
     },
     update: function() {
         this.now = new Date().getTime();
-if(game.data.player.dead){
-    
-    me.game.world.removeChild(game.data.player);
-    me.state.current().resetPlayer(10, 0) ;
-
-    
-}
+this.goldTimerCheck();
 
 if (Math.round(this.now / 1000) % 20 === 0 && (this.now - this.lastCreep >= 1000)) {
             game.data.gold +=1;
@@ -32,7 +26,29 @@ console.log("current gold:" + game.data.gold);
 
         }
         return true;
+    },
+    goldTimerCheck: function(){
+        
     }
 });
+
+
+game.HeroDeathManager = Object.extend({
+    init: function(x, y, settings){
+         this.alwaysUpdate = true;
+        
+    },
+    update: function(){
+        if(game.data.player.dead){
+    
+    me.game.world.removeChild(game.data.player);
+    me.state.current().resetPlayer(10, 0) ;
+
+    
+}
+    }    
+    
+});
+
 
 

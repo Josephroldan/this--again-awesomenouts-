@@ -1,7 +1,7 @@
 // TODO
 game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings) {
-        this.setSuper();
+        this.setSuper(x, y);
         this.setPlayerTimers();
         this.setAttributes();
         this.setFlags();
@@ -17,7 +17,7 @@ game.PlayerEntity = me.Entity.extend({
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
         this.renderable.setCurrentAnimation("idle");
     },
-    setSuper: function() {
+    setSuper: function(x, y) {
         this._super(me.Entity, 'init', [x, y, {
                 image: "player",
                 width: 64,
@@ -55,7 +55,7 @@ game.PlayerEntity = me.Entity.extend({
     },
     update: function(delta) {
         this.now = new Date().getTime();
-        this.dead = checkIfDead();
+        this.dead = this.checkIfDead();
         this.checkKeyPressesAndMove();
 
         this.setAnimation();
@@ -184,21 +184,11 @@ game.PlayerEntity = me.Entity.extend({
         var xdif = this.pos.x - response.b.pos.x;
 this.stopMovement(xdif);
 
-       
+       this.checkAttack(xdif, ydif, response);
         
-        if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer
-                && (Math.abs(ydif) <= 40) &&
-                (((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))
-                ) {
-
-            this.lastHit = this.now;
-
-            if (response.b.health <= game.data.playerAttack) {
-                game.data.gold += 1;
-            }
-
-            response.b.loseHealth(game.data.playerAttack);
-        }
+       if(this.checkAttack(xdif, ydif)){
+       this.hitCreep(response);
+       };
 
     },
     stopMovement: function(xdif){
@@ -213,7 +203,40 @@ this.stopMovement(xdif);
             }
             this.pos.x = this.pos.x - 1;
         }
-    }
+    },
+
+checkAttack: function(xdif, ydif, response){
+     if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer
+                && (Math.abs(ydif) <= 40) &&
+                (((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))
+                ) {
+
+            this.lastHit = this.now;
+            }
+            
+},
+
+hitCreep: function(response){
+     if (response.b.health <= game.data.playerAttack) {
+                game.data.gold += 1;
+            }
+
+            response.b.loseHealth(game.data.playerAttack);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 

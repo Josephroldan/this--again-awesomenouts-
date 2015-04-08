@@ -15,6 +15,8 @@ game.PlayScreen = me.ScreenObject.extend({
         var gamemanager = me.pool.pull("GameManager", 0, 0, {});
         me.game.world.addChild(gamemanager, 0);
         
+        var HeroDeathmanager = me.pool.pull("HeroDeathManager", 0, 0, {});
+        me.game.world.addChild(HeroDeathmanager, 0);
         
         
         me.input.bindKey(me.input.KEY.RIGHT, "right");

@@ -22,7 +22,8 @@ var game = {
         gold: 0,
         exp1: 0,
         exp2: 0,
-        exp3: 0
+        exp3: 0.,
+        win:""
 
 
 

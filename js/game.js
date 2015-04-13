@@ -22,7 +22,7 @@ var game = {
         gold: 0,
         exp1: 0,
         exp2: 0,
-        exp3: 0.,
+        exp3: 0,
         win:""
 
 
@@ -47,6 +47,13 @@ var game = {
                 me.plugin.register.defer(this, debugPanel, "debug");
             });
         }
+
+
+me.save.add({ exp1: 0, exp2: 0, exp3: 0});
+
+game.data.exp
+
+
 
         // Initialize the audio.
         me.audio.init("mp3,ogg");

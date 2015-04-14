@@ -5,7 +5,7 @@ var game = {
     data: {
         // score
         score: 0,
-        enemyBaseHealth: 10,
+        enemyBaseHealth: 1,
         playerBaseHealth: 10,
         enemyCreepHealth: 5,
         playerHealth: 10,
@@ -49,9 +49,10 @@ var game = {
         }
 
 
-me.save.add({ exp1: 0, exp2: 0, exp3: 0});
+me.save.add({ exp: 0, exp1: 0, exp2: 0, exp3: 0});
 
-game.data.exp
+console.log(game.data.exp);
+console.log(game.data.exp2);
 
 
 

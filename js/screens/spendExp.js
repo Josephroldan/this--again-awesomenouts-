@@ -24,7 +24,7 @@ game.SpendExp = me.ScreenObject.extend({
  this.font.draw(renderer.getContext(), "CURRENT EXP: " + game.data.exp.toString(), this.pos.x + 100, this.pos.y + 50); 
  this.font.draw(renderer.getContext(), "1: increase GOLD PRODUCTION CURRENT LEVEL: " + game.data.exp1.toString() + " COST: " + exp1cost ,this.pos.x, this.pos.y + 100); 
  this.font.draw(renderer.getContext(), "2: INCREASE STRENGTH ", this.pos.x, this.pos.y + 150); 
- this.font.draw(renderer.getContext(), " 3: INCREASSE HEALTH", this.pos.x, this.pos.y + 200); 
+ this.font.draw(renderer.getContext(), " 3: INCREASE HEALTH", this.pos.x, this.pos.y + 200); 
             }
 
         })));

@@ -16,14 +16,16 @@ var game = {
         playerMoveSpeed: 5,
         creepMoveSpeed: 5,
         gameManager: "",
-        heroDeathManager:"",
+        heroDeathManager: "",
         player: "",
         exp: 0,
         gold: 0,
         exp1: 0,
         exp2: 0,
         exp3: 0,
-        win:""
+        win: "",
+        pausePos: "",
+        buyScreen: ""
 
 
 
@@ -31,8 +33,7 @@ var game = {
 
 
 
-
-   },
+    },
     // Run on page load.
     "onload": function() {
         // Initialize the video.
@@ -49,14 +50,14 @@ var game = {
         }
 
 
-me.save.add({ exp: 0, exp1: 0, exp2: 0, exp3: 0});
+        me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0});
 
-me.state.SPENDEXP= 112;
+        me.state.SPENDEXP = 112;
 
 
 
-console.log(game.data.exp);
-console.log(game.data.exp2);
+        console.log(game.data.exp);
+        console.log(game.data.exp2);
 
 
 
@@ -79,12 +80,14 @@ console.log(game.data.exp2);
         me.pool.register("EnemyBase", game.EnemyBaseEntity, true);
         me.pool.register("EnemyCreep", game.EnemyCreep, true);
         me.pool.register("GameManager", game.GameManager, true);
-         me.pool.register("HeroDeathManager", game.HeroDeathManager, true);
- me.pool.register("ExperienceManager", game.ExperienceManager, true);
+        me.pool.register("HeroDeathManager", game.HeroDeathManager, true);
+        me.pool.register("ExperienceManager", game.ExperienceManager, true);
+         me.pool.register("SpendGold", game.SpendGold, true);
+        
 
         me.state.set(me.state.MENU, new game.TitleScreen());
         me.state.set(me.state.PLAY, new game.PlayScreen());
-         me.state.set(me.state.SPENDEXP, new game.SpendExp());
+        me.state.set(me.state.SPENDEXP, new game.SpendExp());
 
         // Start the game.
         me.state.change(me.state.MENU);

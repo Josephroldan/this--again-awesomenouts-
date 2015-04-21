@@ -33,6 +33,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 
         me.input.bindKey(me.input.KEY.ESC, "buy");
+        
         me.input.bindKey(me.input.KEY.Q, "skill1");
         me.input.bindKey(me.input.KEY.W, "skill2");
         me.input.bindKey(me.input.KEY.E, "skill3");

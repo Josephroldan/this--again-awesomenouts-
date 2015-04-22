@@ -35,13 +35,15 @@ game.SpendExp = me.ScreenObject.extend({
                        game.data.exp1 +=1;
                         game.data.exp -= exp1cost;
                         me.state.change(me.state.PLAY);
+                   }else {
+                       console.log("not enough");
                    }
              } else if(action=== "F2"){
                  
              } else if(action=== "F3"){
                  
              } else if(action=== "F4"){
-            me.state.change(me.state.PLAY)     
+            me.state.change(me.state.PLAY);     
              }
           });
         
@@ -59,7 +61,7 @@ game.SpendExp = me.ScreenObject.extend({
     me.input.unbindKey(me.input.KEY.F2, "F2");
     me.input.unbindKey(me.input.KEY.F3, "F3");
     me.input.unbindKey(me.input.KEY.F4, "F4");
-     me.event.unsubcribe(this.handler);
+     me.event.unsubscribe(this.handler);
 	}
 });
 

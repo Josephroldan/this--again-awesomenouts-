@@ -1,74 +1,3 @@
-
-
-
-game.HeroDeathManager = Object.extend({
-    init: function(x, y, settings) {
-        this.alwaysUpdate = true;
-
-    },
-    update: function() {
-        if (game.data.player.dead) {
-
-            me.game.world.removeChild(game.data.player);
-            me.state.current().resetPlayer(10, 0);
-
-
-        }
-
-        return true;
-
-    }
-
-});
-
-
-
-game.ExperienceManager = Object.extend({
-    init: function(x, y, settings) {
-        this.alwaysUpdate = true;
-        this.gameover = false;
-    },
-    update: function() {
-        if (game.data.win === true && !this.gameover) {
-            this.gameOver(true);
-        } else if (game.data.win === false && !this.gameover) {
-
-            this.gameOver(false);
-        }
-
-
-
-
-
-
-        return true;
-    },
-    gameOver: function(win) {
-        if (win === true) {
-            game.data.exp += 10;
-        } else {
-            game.data.exp += 1;
-        }
-        console.log(game.data.exp);
-        this.gameover = true;
-        me.save.exp = game.data.exp;
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
-
 game.SpendGold = Object.extend({
     init: function(x, y, settings) {
         this.now = new Date().getTime();
@@ -212,22 +141,22 @@ game.SpendGold = Object.extend({
             game.data.skill1 += 1;
             game.data.playerAttack += 1;
         } else if (skill === 2) {
-game.data.gold -= ((game.data.skill2 + 1) * 10);
- game.data.skill2 += 1;
+            game.data.gold -= ((game.data.skill2 + 1) * 10);
+            game.data.skill2 += 1;
         } else if (skill === 3) {
             game.data.gold -= ((game.data.skill3 + 1) * 10);
- game.data.skill3 += 1;
+            game.data.skill3 += 1;
         } else if (skill === 4) {
             game.data.gold -= ((game.data.ability1 + 1) * 10);
- game.data.ability1 += 1;
+            game.data.ability1 += 1;
         } else if (skill === 5) {
-game.data.gold -= ((game.data.ability2 + 1) * 10);
- game.data.ability2 += 1;
+            game.data.gold -= ((game.data.ability2 + 1) * 10);
+            game.data.ability2 += 1;
         } else if (skill === 6) {
-        game.data.gold -= ((game.data.ability3 + 1) * 10);
- game.data.ability3 += 1;
+            game.data.gold -= ((game.data.ability3 + 1) * 10);
+            game.data.ability3 += 1;
         }
-        }
+    }
 
 
 
@@ -247,3 +176,4 @@ game.data.gold -= ((game.data.ability2 + 1) * 10);
 
 
 });
+

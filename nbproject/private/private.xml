@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/js/screens/title.js</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/php/controller/login-user.php</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/php/model/config.php</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/js/screens/newProfile.js</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/js/screens/spendExp.js</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/php/controller/save-user.php</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/index.css</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/php/controller/create-user.php</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/php/controller/create-db.php</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/js/screens/loadProfile.js</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/index.php</file>
+            <file>file:/C:/xampp/htdocs/newAwesomenaughts/js/screens/play.js</file>
+        </group>
     </open-files>
 </project-private>

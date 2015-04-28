@@ -1,4 +1,7 @@
 <!DOCTYPE HTML>
+<?php
+require_once("php/controller/create-db.php");
+?>
 <html>
     <head>
         <title>Awesomenouts game</title>
@@ -10,7 +13,10 @@
         <link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
         <link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad-76x76.png">
         <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png"
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     </head>
     <body>
         <!-- Canvas placeholder -->
@@ -24,11 +30,11 @@
 
             <div class="password">
                 <label for="password">Password</label>
-                  <input type="text" name="password" id="password">
+                <input type="text" name="password" id="password">
             </div>
             <button type="button" id="register">Register</button>
             <button type="button" id="load">Load</button>
-            <button type="button" id="register">Main Menu</button>
+            <button type="button" id="mainmenu">Main Menu</button>
         </form>
 
 
@@ -46,11 +52,11 @@
 
         <script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
         <script type="text/javascript" src="js/entities/EnemyCreep.js"></script>
-        <script type="text/javascript" src="js/entities/gameManagers/GameManager.js"></script>
+        <script type="text/javascript" src="js/gameManagers/GameManager.js"></script>
         <script type="text/javascript" src="js/entities/PlayerBaseEntity.js"></script>
-        <script type="text/javascript" src="js/entities/gameTimerManager.js"></script>
-        <script type="text/javascript" src="js/entities/gameManagers/spendGoldManager.js"></script>
-        <script type="text/javascript" src="js/entities/gameManager/heroDeathManager.js"></script>
+        <script type="text/javascript" src="js/gameManagers/gameTimerManager.js"></script>
+        <script type="text/javascript" src="js/gameManagers/spendGoldManager.js"></script>
+        <script type="text/javascript" src="js/gameManagers/heroDeathManager.js"></script>
         <script type="text/javascript" src="js/entities/entities.js"></script>
         <script type="text/javascript" src="js/entities/HUD.js"></script>
 
@@ -86,5 +92,10 @@
                 }
             });
         </script>
+         <script>
+         $("#mainmenu").bind("click", function(){
+              me.state.change(me.state.MENU);
+         });
+         </script>
     </body>
 </html>

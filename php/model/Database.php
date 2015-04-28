@@ -27,7 +27,6 @@ class Database {
 
 
         if (!$exists) {
-            echo 'database doesnt exist';
             $query = $this->connection->query("CREATE DATABASE $database");
             //code tells if the database does not exist 
             if ($query) {

@@ -15,8 +15,3 @@ $query = $_SESSION["connection"]->query("CREATE TABLE users ("
          . "exp4 int(4),"
         . "PRIMARY KEY (id))");
 //backbone for user database
-if ($query) {
-  
-} else {
-    echo "<p>" . $_SESSION["connection"]->error . "</p>";
-}

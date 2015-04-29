@@ -29,10 +29,10 @@ if ($query->num_rows == 1) {
 $_SESSION["name"] = $username;
         echo json_encode($array);
     } else {
-        echo "<p>invalid username and password</p>";
+        echo "invalid username and password";
         //determines whether you logged in correctly or not
     }
 } else {
-    echo "<p>invalid username and password</p>";
+    echo "invalid username and password";
 }
 //tells if you entered data incorrectly

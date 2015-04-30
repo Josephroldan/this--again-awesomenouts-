@@ -4,6 +4,9 @@ var game = {
     // an object where to store game information
     data: {
         // score
+
+
+        //global variables for use in in different parts of code helpful in refactoring
         score: 0,
         enemyBaseHealth: 1,
         playerBaseHealth: 10,
@@ -60,11 +63,11 @@ var game = {
 
 
         me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0});
-
+//places in values of other  pages
         me.state.SPENDEXP = 112;
         me.state.NEW = 113;
         me.state.LOAD = 114;
-
+//
         console.log(game.data.exp);
         console.log(game.data.exp2);
 
@@ -92,7 +95,7 @@ var game = {
         me.pool.register("HeroDeathManager", game.HeroDeathManager, true);
         me.pool.register("ExperienceManager", game.ExperienceManager, true);
         me.pool.register("SpendGold", game.SpendGold, true);
-
+//registers the data classes and screens
 
         me.state.set(me.state.MENU, new game.TitleScreen());
         me.state.set(me.state.PLAY, new game.PlayScreen());

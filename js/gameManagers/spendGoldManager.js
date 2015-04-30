@@ -1,5 +1,7 @@
 game.SpendGold = Object.extend({
-    init: function(x, y, settings) {
+    init: function(x, y, settings)
+    {
+        //places in variables for pausing buying and more
         this.now = new Date().getTime();
         this.lastBuy = new Date().getTime();
         this.paused = false;
@@ -14,8 +16,10 @@ game.SpendGold = Object.extend({
         if (me.input.isKeyPressed("buy") && this.now - this.lastBuy >= 1000) {
             this.lastBuy = this.now;
             if (!this.buying) {
+                //says to activate function for purchase if inactive
                 this.startBuying();
             } else {
+                //otherwise  not to
                 this.stopBuying();
             }
         }
@@ -28,7 +32,7 @@ game.SpendGold = Object.extend({
         this.buying = true;
         me.state.pause(me.state.PLAY);
         game.data.pausePos = me.game.viewport.localToWorld(0, 0);
-
+//pauses the play screen for the gamer
 
 
         game.data.buyScreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
@@ -40,6 +44,7 @@ game.SpendGold = Object.extend({
         me.game.world.addChild(game.data.buyScreen, 34);
         game.data.player.body.setVelocity(0, 0);
         me.state.pause(me.state.PLAY);
+        //binds necesary keys for menu and skip
         me.input.bindKey(me.input.KEY.F1, "F1", true);
         me.input.bindKey(me.input.KEY.F2, "F2", true);
         me.input.bindKey(me.input.KEY.F3, "F3", true);
@@ -56,11 +61,11 @@ game.SpendGold = Object.extend({
 
                 this.font = new me.Font("Arial", 26, "white");
                 this.updateWhenPaused = true;
-
+//chooses font and text size
                 this.alwaysUpdate = true;
             },
             draw: function(renderer) {
-
+//draws what words will appear 
                 this.font.draw(renderer.getContext(), "PRESS F1-F5 AND ESC TO SKIP, Current gold  " + game.data.gold, this.pos.x, this.pos.y);
                 this.font.draw(renderer.getContext(), "speed Boost Current Level:  " + game.data.skill1 + " COST:  " + ((game.data.skill1 + 1) * 10), this.pos.x, this.pos.y + 40);
                 this.font.draw(renderer.getContext(), "Expirience Booster " + game.data.skill2 + "  COST:  " + ((game.data.skill2 + 1) * 10), this.pos.x, this.pos.y + 80);
@@ -92,6 +97,7 @@ game.SpendGold = Object.extend({
         if (me.input.isKeyPressed("F1")) {
             if (this.checkCost(1)) {
                 this.makePurchase(1);
+
             }
         } else if (me.input.isKeyPressed("F2")) {
             if (this.checkCost(2)) {
@@ -139,6 +145,7 @@ game.SpendGold = Object.extend({
         if (skill === 1) {
             game.data.gold -= ((game.data.skill1 + 1) * 10);
             game.data.skill1 += 1;
+            //sets in level or number of purchases
             game.data.playerAttack += 1;
         } else if (skill === 2) {
             game.data.gold -= ((game.data.skill2 + 1) * 10);

@@ -21,17 +21,18 @@ require_once("php/controller/create-db.php");
     <body>
         <!-- Canvas placeholder -->
         <div id="screen"></div>
-
+        <!-- sets username and password form -->
         <form id="input" method="post">
             <div class="field">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" autocomplete="off"
             </div>
-
+            <!---->
             <div class="password">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password">
             </div>
+            <!---->
             <button type="button" id="register">Register</button>
             <button type="button" id="load">Load</button>
             <button type="button" id="mainMenu">Main Menu</button>
@@ -92,8 +93,10 @@ require_once("php/controller/create-db.php");
                 }
             });
         </script>
+
         <script>
             $("#mainMenu").bind("click", function() {
+                //changes back to main menu when clicked on   
                 me.state.change(me.state.MENU);
             });
             $("#register").bind("click", function() {
@@ -103,25 +106,28 @@ require_once("php/controller/create-db.php");
                     data: {
                         username: $('#username').val(),
                         password: $('#password').val()
+                                // inputs new username and password into user table for registration        
                     },
                     dataType: "text"
                 })
                         .success(function(response) {
                             if (response === "true") {
+                                //when successful it starts game         
                                 me.state.change(me.state.PLAY);
                             } else {
                                 alert(response);
                             }
-                        })  
+                        })
                         .fail(function(response) {
                             alert("Fail");
+                            //alerts if theres a error                    
                         });
             });
 
             $("#load").bind("click", function() {
                 $.ajax({
                     type: "POST",
-                    url: "php/controller/create-user.php",
+                    url: "php/controller/login-user.php",
                     data: {
                         username: $('#username').val(),
                         password: $('#password').val()
@@ -131,14 +137,16 @@ require_once("php/controller/create-db.php");
                         .success(function(response) {
                             if (response === "invalid username and password") {
                                 alert(response);
+                        //fails load if incorrect
                             } else {
                                 var data = jQuery.parseJSON(response);
                                 game.data.exp = data["exp"];
+                                console.log(game.data.exp);
                                 game.data.exp1 = data["exp1"];
                                 game.data.exp2 = data["exp2"];
                                 game.data.exp3 = data["exp3"];
                                 game.data.exp4 = data["exp4"];
-
+// if successfully working 
                                 me.state.change(me.state.SPENDEXP);
                             }
                         })

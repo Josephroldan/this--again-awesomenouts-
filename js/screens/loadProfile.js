@@ -5,14 +5,16 @@ game.LoadProfile = me.ScreenObject.extend({
     onResetEvent: function() {
         me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10); // TODO
 
-document.getElementById("input").style.visibility = "visible";
-document.getElementById("load").style.visibility = "visible";
+        document.getElementById("input").style.visibility = "visible";
+        document.getElementById("load").style.visibility = "visible";
+//changes visibility of buttons
 
         me.input.unbindKey(me.input.KEY.ESC);
         me.input.unbindKey(me.input.KEY.Q);
         me.input.unbindKey(me.input.KEY.W);
         me.input.unbindKey(me.input.KEY.E);
         me.input.unbindKey(me.input.KEY.A);
+        //unbinds these keys
         var exp1cost = ((game.data.exp1 + 1) * 10);
         me.game.world.addChild(new (me.Renderable.extend({
             init: function() {
@@ -24,7 +26,7 @@ document.getElementById("load").style.visibility = "visible";
             draw: function(renderer) {
 
                 this.font.draw(renderer.getContext(), "ENTER YOUR USERNAME AND PASSWORD: ", this.pos.x, this.pos.y);
-
+//draws basic needed info 
             }
 
         })));
@@ -32,13 +34,14 @@ document.getElementById("load").style.visibility = "visible";
 
 
 
-   },
+    },
     /**	
      *  action to perform when leaving this screen (state change)
      */
     onDestroyEvent: function() {
-document.getElementById("input").style.visibility = "hidden";
-document.getElementById("load").style.visibility = "hidden";
+        document.getElementById("input").style.visibility = "hidden";
+        document.getElementById("load").style.visibility = "hidden";
+        // hides button
     }
 });
 

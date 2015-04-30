@@ -1,6 +1,7 @@
 game.PlayerBaseEntity = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, {
+                // draws player base
                 image: "tower",
                 width: 100,
                 height: 100,
@@ -15,7 +16,7 @@ game.PlayerBaseEntity = me.Entity.extend({
         this.health = game.data.playerBaseHealth;
         this.alwaysUpdate = true;
         this.body.onCollision = this.onCollision.bind(this);
-
+//sets animations for base
         this.type = "PlayerBaseEntity";
         this.renderable.addAnimation("idle", [0]);
         this.renderable.addAnimation("broken", [1]);
@@ -26,6 +27,7 @@ game.PlayerBaseEntity = me.Entity.extend({
             this.broken = true;
             game.data.win = false;
             this.renderable.setCurrentAnimation("broken");
+            // tells that you lose if the tower dies
         }
         this.body.update(delta);
         this._super(me.Entity, "update", [delta]);

@@ -16,6 +16,7 @@ $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 //detects if the inputted username and password are strings
 
 $query = $_SESSION["connection"]->query("SELECT * FROM users WHERE BINARY username = '$username'");
+
 if ($query->num_rows == 1) {
     $row = $query->fetch_array();
 
